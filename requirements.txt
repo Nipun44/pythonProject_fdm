@@ -1,1 +1,38 @@
-pandas~=2.1.1
+# Flask web framework for building web applications
+Flask==1.1.1
+
+# Flask extension for handling Cross-Origin Resource Sharing (CORS),
+# enabling cross-origin AJAX requests
+Flask-Cors==3.0.8
+
+# Matplotlib for creating static, interactive, and animated plots
+matplotlib==3.1.2
+
+# NumPy for numerical computing in Python
+numpy==1.18.1
+
+# Pandas for data manipulation and analysis
+pandas==0.25.3
+
+# Scikit-learn for machine learning models and tools
+scikit-learn==0.22.1
+
+# Kneed for finding the optimal number of clusters in KMeans clustering using the elbow method
+kneed==0.5.1
+
+# XGBoost library for gradient boosting
+xgboost==1.0.2
+
+# Flask extension providing a monitoring dashboard for Flask applications
+Flask-MonitoringDashboard==3.0.6
+
+# Jinja2 template engine, the foundation for Flask templates
+Jinja2==2.11.0
+
+# Werkzeug WSGI toolkit, used by Flask to serve web applications
+Werkzeug==0.16.1
+
+# Itsdangerous for securely passing data between untrusted environments
+itsdangerous==1.1.0
+
+# Certifi provides a collection of trusted SSL certificates for validating SSL certificates
