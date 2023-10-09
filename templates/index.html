@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Heart Mate</title>
+  </head>
+ <body>
+
+    <div class="container mt-5">
+      <h2>Enter Data</h2>
+      <form id="inputForm">
+
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select class="form-control" id="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" class="form-control" id="age" placeholder="Enter age" required>
+        </div>
+
+        <div class="form-group">
+          <label for="smoker">Do you smoke?</label>
+          <select class="form-control" id="smoker" required>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="cigsPerDayGroup" style="display: none;">
+          <label for="cigsPerDay">Number of cigarettes per day:</label>
+          <input type="text" class="form-control" id="cigsPerDay" placeholder="Enter number of cigarettes per day">
+        </div>
+        <div class="form-group">
+          <label for="bloodPressureMedication">Blood Pressure Medication (0 for No, 1 for Yes):</label>
+          <input type="number" class="form-control" id="bloodPressureMedication" placeholder="Enter 0 or 1" required>
+        </div>
+        <div class="form-group">
+          <label for="prevalentStroke">Prevalent Stroke (0 for No, 1 for Yes):</label>
+          <input type="number" class="form-control" id="prevalentStroke" placeholder="Enter 0 or 1" required>
+        </div>
+        <div class="form-group">
+          <label for="prevalentHyp">Prevalent Hypertension (0 for No, 1 for Yes):</label>
+          <input type="number" class="form-control" id="prevalentHyp" placeholder="Enter 0 or 1" required>
+        </div>
+
+        <div class="form-group">
+          <label for="diabetes">Diabetes (0 for No, 1 for Yes):</label>
+          <input type="number" class="form-control" id="diabetes" placeholder="Enter 0 or 1" required>
+        </div>
+        <div class="form-group">
+          <label for="cholesterol">Cholesterol Level:</label>
+          <input type="number" class="form-control" id="cholesterol" placeholder="Enter cholesterol level" required>
+        </div>
+        <div class="form-group">
+          <label for="sysBP">Systolic Blood Pressure:</label>
+          <input type="number" class="form-control" id="sysBP" placeholder="Enter systolic blood pressure" required>
+        </div>
+        <div class="form-group">
+          <label for="diaBP">Diastolic Blood Pressure:</label>
+          <input type="number" class="form-control" id="diaBP" placeholder="Enter diastolic blood pressure" required>
+        </div>
+        <div class="form-group">
+          <label for="BMI">BMI:</label>
+          <input type="number" class="form-control" id="BMI" placeholder="Enter BMI" required>
+        </div>
+        <div class="form-group">
+          <label for="heartRate">Heart Rate:</label>
+          <input type="number" class="form-control" id="heartRate" placeholder="Enter heart rate" required>
+        </div>
+        <div class="form-group">
+          <label for="glucose">Glucose Level:</label>
+          <input type="number" class="form-control" id="glucose" placeholder="Enter glucose level" required>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <h2>Result:</h2>
+      <p id="result"></p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- JavaScript code to handle form submission and display result -->
+    <script>
+      document.getElementById("inputForm").onsubmit = function(event) {
+        event.preventDefault();
+        // Get input values
+        var gender = document.getElementById("gender").value;
+        var age = document.getElementById("age").value;
+        var bloodPressureMedication = document.getElementById("bloodPressureMedication").value;
+        var prevalentStroke = document.getElementById("prevalentStroke").value;
+        var prevalentHyp = document.getElementById("prevalentHyp").value;
+        var diabetes = document.getElementById("diabetes").value;
+        var cholesterol = document.getElementById("cholesterol").value;
+        var sysBP = document.getElementById("sysBP").value;
+        var diaBP = document.getElementById("diaBP").value;
+        var BMI = document.getElementById("BMI").value;
+        var heartRate = document.getElementById("heartRate").value;
+        var glucose = document.getElementById("glucose").value;
+        var smoker = document.getElementById("smoker").value;
+        var cigsPerDay = "";
+        if (smoker === "1") {
+          cigsPerDay = document.getElementById("cigsPerDay").value;
+        }
+
+
+        // Display the result
+        document.getElementById("result").textContent = "Do you smoke? " + smoker + "\nNumber of cigarettes per day: " + cigsPerDay;
+      }
+
+      // Show/hide "Number of cigarettes per day" based on user's choice
+      document.getElementById("smoker").onchange = function() {
+        var cigsPerDayGroup = document.getElementById("cigsPerDayGroup");
+        if (this.value === "1") {
+          cigsPerDayGroup.style.display = "block";
+        } else {
+          cigsPerDayGroup.style.display = "none";
+        }
+      }
+    </script>
+
+</body>
+</html>
