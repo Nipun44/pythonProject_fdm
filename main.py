@@ -46,6 +46,7 @@ def predict():
                  prevalentStroke, prevalentHyp, diabetes, cholesterol,
                  sysBP, diaBP, BMI, heartRate, glucose]
         print(cigsPerDay)
+        print(bloodPressureMedication)
 
         # Make prediction using the loaded machine learning model
         prediction = model_lr.predict([features])
