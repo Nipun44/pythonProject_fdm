@@ -15,42 +15,45 @@ def index():
 
 from flask import request
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
-        # Get form data and convert to integer values
-        gender = int(request.form.get('gender'))
-        age = int(request.form.get('age'))
-        smoker = int(request.form.get('smoker'))
-        cigsPerDay = int(request.form.get('cigsPerDay'))
-        bloodPressureMedication = int(request.form.get('bloodPressureMedication'))
-        prevalentStroke = int(request.form.get('prevalentStroke'))
-        prevalentHyp = int(request.form.get('prevalentHyp'))
-        diabetes = int(request.form.get('diabetes'))
-        cholesterol = int(request.form.get('cholesterol'))
-        sysBP = int(request.form.get('sysBP'))
-        diaBP = int(request.form.get('diaBP'))
-        BMI = int(request.form.get('BMI'))
-        heartRate = int(request.form.get('heartRate'))
-        glucose = int(request.form.get('glucose'))
+        # Get form data from request
 
-        # Prepare the input data for prediction
-        input_data = [[gender, age, smoker, cigsPerDay, bloodPressureMedication, prevalentStroke,
-                       prevalentHyp, diabetes, cholesterol, sysBP, diaBP, BMI, heartRate, glucose]]
-        print(input_data)
+        data = request.form.to_dict()
 
-        # Make prediction using your machine learning model
-        prediction = model_lr.predict(input_data)  # Assuming you have a loaded machine learning model named 'model'
+        # Convert form data to the appropriate data types
+        male = int(data['gender'])
+        age = int(data['age'])
+        currentSmoker = int(data['smoker'])
+        if currentSmoker == 0:
+            cigsPerDay = 0  # If not a current smoker, set cigarettes per day to 0
+        else:
+            cigsPerDay = float(data['cigsPerDay'])
+        bloodPressureMedication = float(data['bloodPressureMedication'])
+        prevalentStroke = int(data['prevalentStroke'])
+        prevalentHyp = int(data['prevalentHyp'])
+        diabetes = int(data['diabetes'])
+        cholesterol = float(data['cholesterol'])
+        sysBP = float(data['sysBP'])
+        diaBP = float(data['diaBP'])
+        BMI = float(data['BMI'])
+        heartRate = float(data['heartRate'])
+        glucose = float(data['glucose'])
 
-        # You can now use the 'prediction' variable as the predicted output
 
-        # Return the prediction to the client
-        return str(prediction[0])  # This sends the prediction back as a string response
+        features = [male, age, currentSmoker, cigsPerDay, bloodPressureMedication,
+                 prevalentStroke, prevalentHyp, diabetes, cholesterol,
+                 sysBP, diaBP, BMI, heartRate, glucose]
+        print(cigsPerDay)
 
+        # Make prediction using the loaded machine learning model
+        prediction = model_lr.predict([features])
+
+        # Return the prediction as a response
+        return str(prediction[0])
     else:
-        # Handle GET request method if needed
-        # ...
-        pass
+        return 'Invalid Request'
 
 if __name__=='__main__':
     app.run()
