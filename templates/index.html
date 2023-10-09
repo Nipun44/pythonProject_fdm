@@ -41,47 +41,73 @@
           <input type="text" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
         </div>
         <div class="form-group">
-          <label for="bloodPressureMedication">Blood Pressure Medication (0 for No, 1 for Yes):</label>
-          <input type="number" class="form-control" id="bloodPressureMedication" name="bloodPressureMedication" placeholder="Enter 0 or 1" required>
+            <label>Do you take Blood Pressure Medication?</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="bloodPressureMedication" id="bpMedicationYes" value="1" required>
+                <label class="form-check-label" for="bpMedicationYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="bloodPressureMedication" id="bpMedicationNo" value="0" required>
+                <label class="form-check-label" for="bpMedicationNo">No</label>
+            </div>
         </div>
         <div class="form-group">
-          <label for="prevalentStroke">Prevalent Stroke (0 for No, 1 for Yes):</label>
-          <input type="number" class="form-control" id="prevalentStroke" name="prevalentStroke" placeholder="Enter 0 or 1" required>
-        </div>
-        <div class="form-group">
-          <label for="prevalentHyp">Prevalent Hypertension (0 for No, 1 for Yes):</label>
-          <input type="number" class="form-control" id="prevalentHyp" name="prevalentHyp" placeholder="Enter 0 or 1" required>
+            <label>Have you ever had a stroke?</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prevalentStroke" id="strokeYes" value="1" required>
+                <label class="form-check-label" for="strokeYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prevalentStroke" id="strokeNo" value="0" required>
+                <label class="form-check-label" for="strokeNo">No</label>
+            </div>
         </div>
 
         <div class="form-group">
-          <label for="diabetes">Diabetes (0 for No, 1 for Yes):</label>
-          <input type="number" class="form-control" id="diabetes" name="diabetes" placeholder="Enter 0 or 1" required>
+            <label>Do you have Prevalent Hypertension?</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prevalentHyp" id="hypertensionYes" value="1" required>
+                <label class="form-check-label" for="hypertensionYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="prevalentHyp" id="hypertensionNo" value="0" required>
+                <label class="form-check-label" for="hypertensionNo">No</label>
+            </div>
+        <div class="form-group">
+            <label>Do you have Diabetes?</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="diabetes" id="diabetesYes" value="1" required>
+                <label class="form-check-label" for="diabetesYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="diabetes" id="diabetesNo" value="0" required>
+                <label class="form-check-label" for="diabetesNo">No</label>
+            </div>
         </div>
         <div class="form-group">
-          <label for="cholesterol">Cholesterol Level:</label>
-          <input type="number" class="form-control" id="cholesterol" name="cholesterol" placeholder="Enter cholesterol level" required>
+            <label for="cholesterol">Cholesterol Level:</label>
+            <input type="number" step="0.01" class="form-control" id="cholesterol" name="cholesterol" placeholder="Enter cholesterol level" required>
         </div>
         <div class="form-group">
-          <label for="sysBP">Systolic Blood Pressure:</label>
-          <input type="number" class="form-control" id="sysBP" name="sysBP" placeholder="Enter systolic blood pressure" required>
+            <label for="sysBP">Systolic Blood Pressure:</label>
+            <input type="number" step="0.01" class="form-control" id="sysBP" name="sysBP" placeholder="Enter systolic blood pressure" required>
         </div>
         <div class="form-group">
-          <label for="diaBP">Diastolic Blood Pressure:</label>
-          <input type="number" class="form-control" id="diaBP" name="diaBP" placeholder="Enter diastolic blood pressure" required>
+            <label for="diaBP">Diastolic Blood Pressure:</label>
+            <input type="number" step="0.01" class="form-control" id="diaBP" name="diaBP" placeholder="Enter diastolic blood pressure" required>
         </div>
         <div class="form-group">
-          <label for="BMI">BMI:</label>
-          <input type="number" class="form-control" id="BMI" name="BMI" placeholder="Enter BMI" required>
+            <label for="BMI">BMI:</label>
+            <input type="number" step="0.01" class="form-control" id="BMI" name="BMI" placeholder="Enter BMI" required>
         </div>
         <div class="form-group">
-          <label for="heartRate">Heart Rate:</label>
-          <input type="number" class="form-control" id="heartRate" name="heartRate" placeholder="Enter heart rate" required>
+            <label for="heartRate">Heart Rate:</label>
+            <input type="number" step="0.01" class="form-control" id="heartRate" name="heartRate" placeholder="Enter heart rate" required>
         </div>
         <div class="form-group">
-          <label for="glucose">Glucose Level:</label>
-          <input type="number" class="form-control" id="glucose" name="glucose" placeholder="Enter glucose level" required>
+            <label for="glucose">Glucose Level:</label>
+            <input type="number" step="0.01" class="form-control" id="glucose" name="glucose" placeholder="Enter glucose level" required>
         </div>
-
 
 
         <button type="submit" class="btn btn-primary">Submit</button>
