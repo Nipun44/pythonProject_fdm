@@ -52,7 +52,14 @@ def predict():
         prediction = model_lr.predict([features])
 
         # Return the prediction as a response
-        return str(prediction[0])
+        # Modify prediction message based on the result
+        if prediction[0] == 1:
+            prediction_message = "In the next 10 years, you have a chance to get a heart attack."
+        else:
+            prediction_message = "In the next 10 years, you are not likely to get a heart attack."
+
+        # Return the modified prediction message as a response
+        return prediction_message
     else:
         return 'Invalid Request'
 
