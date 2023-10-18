@@ -1,10 +1,10 @@
 # from asgiref import simple_server
 import pickle
+from statistics import mode
 
 import joblib
 import numpy as np
-from flask import Flask, request, render_template, Response, request
-from flask_cors import CORS, cross_origin
+from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
 
@@ -61,26 +61,41 @@ def predict():
 
 
         # Make prediction using the loaded machine learning model
-        prediction_lr = model_lr.predict([features])
-        prediction_svm = svm.predict([features])
-        prediction_dt = dt.predict([features])
+        prediction_lr = model_lr.predict([features])[0]
+        prediction_svm = svm.predict([features])[0]
+        prediction_dt = dt.predict([features])[0]
 
-        prediction_rfc = rfc.predict([features])
+        prediction_rfc = rfc.predict([features])[0]
 
-        # Return the prediction as a response
-        # Modify prediction message based on the result
+        # Collect predictions from all models
+        predictions = [prediction_lr, prediction_svm, prediction_dt, prediction_rfc]
 
-        predictions = [prediction_lr[0], prediction_svm[0], prediction_dt[0], prediction_rfc[0]]
-        majority_prediction = max(set(predictions), key=predictions.count)
+        # Calculate majority prediction using mode
+        majority_prediction = mode(predictions)
 
-        # Generate prediction message based on the result
-        if majority_prediction == 1:
-            prediction_message = f"In the next 10 years, you have a chance to get a heart attack."
-        else:
-            prediction_message = f"In the next 10 years, you are not likely to get a heart attack."
 
-        # Return the modified prediction message as a response
-        return prediction_message
+
+
+        # Convert int64 objects to regular Python integers
+        prediction_lr = int(prediction_lr)
+        prediction_svm = int(prediction_svm)
+        prediction_dt = int(prediction_dt)
+        prediction_rfc = int(prediction_rfc)
+        majority_prediction = int(majority_prediction)
+
+        sendings = {
+            "prediction_lr": prediction_lr,
+            "prediction_svm": prediction_svm,
+            "prediction_dt": prediction_dt,
+            "prediction_rfc": prediction_rfc,
+            "majority_prediction": majority_prediction
+
+        }
+
+
+
+        # Return the predictions as a response
+        return jsonify(sendings)
     else:
         return 'Invalid Request'
 

@@ -111,16 +111,30 @@
 
 
         <button type="submit" class="btn btn-primary">Submit</button>
+
+            <h2>Result:</h2>
+                <p id="majority_prediction"></p>
+            <div>
+          <h2>Individual Model Predictions:</h2>
+          <p>Logistic Regression Prediction: <span id="prediction_lr"></span></p>
+          <p>SVM Prediction: <span id="prediction_svm"></span></p>
+          <p>Decision Tree Prediction: <span id="prediction_dt"></span></p>
+          <p>Random Forest Prediction: <span id="prediction_rfc"></span></p>
+
+
+
+
+      </div>
+        </div>div>
       </form>
 
-      <h2>Result:</h2>
-      <p id="result"></p>
 
 
-                    <div class="col-12" style="text-align: center">
-                        <h4><span id="prediction"></span></h4>
 
-                    </div>
+
+
+
+
 
     </div>
 
@@ -129,7 +143,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- JavaScript code to handle form submission and display result -->
-    <script>
+
+     <script>
+
+
+
         function form_handler(event) {
             event.preventDefault(); // Don't submit the form like normal way
 
@@ -162,16 +180,33 @@
             var xhr = new XMLHttpRequest();
 
             xhr.open('POST', '/predict', true);
-            document.getElementById('prediction').innerHTML = "Wait!! Predicting.......";
+            document.getElementById('prediction_lr').innerHTML = "Wait!! Predicting.......";
+            document.getElementById('prediction_svm').innerHTML = ""; // Clear previous predictions if any
+            document.getElementById('prediction_dt').innerHTML = "";
+            document.getElementById('prediction_rfc').innerHTML = "";
+            document.getElementById('majority_prediction').innerHTML = "";
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
-                    document.getElementById('prediction').innerHTML = "Prediction: " + xhr.responseText;
+                    console.log(xhr.responseText);
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById('prediction_lr').innerHTML = response.prediction_lr;
+                    document.getElementById('prediction_svm').innerHTML = response.prediction_svm;
+                    document.getElementById('prediction_dt').innerHTML = response.prediction_dt;
+                    document.getElementById('prediction_rfc').innerHTML = response.prediction_rfc;
+                    document.getElementById('majority_prediction').innerHTML = response.majority_prediction;
                 }
             };
 
             xhr.send(fd);
         }
+
+
+
+
+
+
+
     </script>
 
 </body>
