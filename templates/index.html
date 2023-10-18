@@ -4,21 +4,141 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <link rel="stylesheet" href="static/css/style.css">-->
+    <title>Heart Mate</title>
+<!--    <link rel="stylesheet" href="styles.css">-->
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Heart Mate</title>
+      <style>
+        .custom-container {
+            margin-top: 45px;
+            margin-bottom: 45px;
+            max-width: 650px; /* Maximum width of 100px */
+            margin-left: auto; /* Center the container horizontally */
+            margin-right: auto; /* Center the container horizontally */
+            background-color: white; /* White background color */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            padding: 45px; /* Padding inside the container */
+
+        }
+
+
+
+        .form-group {
+        margin-top: 10px;
+        margin-bottom: 10px; /* Space between form elements: 20px */
+        }
+
+        .logo {
+            max-width: 200px; /* Set the maximum width for the logo to 200 pixels */
+            margin-bottom: 20px; /* Add some space below the logo */
+
+
+          }
+
+        .topic {
+            font-size: 24px; /* Set the font size for the topic */
+            margin-bottom: 30px; /* Add some space below the topic */
+        }
+
+        .center_box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-control {
+            border-radius: 50px; /* Adjust the value to control the roundness of the corners */
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            height: 55px;
+            padding-left: 25px; /* Add left padding inside the select element */
+            padding-right: 25px; /* Add right padding
+
+<!--            outline: none; /* Remove the outline */-->
+            }
+
+         label {
+            margin-top: 2px;
+            margin-bottom: 2px;/* Adjust the value to set the desired margin */
+            }
+
+         .btn-submit {
+            width: 150px;
+            height: 55px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            background-color: #FF0072; /* Pink color */
+            margin-top: 10px;
+             }
+         .btn-submit:hover {
+            background-color: #FF7F47;
+            }
+
+        /* Style the clear button */
+        .btn-clear {
+            width: 150px;
+            height: 55px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            background-color: #404040; /* Dark grey color */
+            margin-top: 5px;
+            margin-bottom: 10px;
+            }
+
+        .btn1 {
+            width: 150px;
+            height: 55px;
+            border: none;
+            border-radius: 50px; /* Rounded corners */
+            background-color: white; /* Background color */
+            color: #FF0072; /* Text color (pink) */
+            margin-top: 5px;
+            margin-bottom: 10px;
+            outline: none; /* Remove the outline when the button is clicked */
+
+        }
+
+
+
+        .btn:hover{
+            background-color: #FF7000;
+
+        }
+
+        .btn:active, .btn:focus {
+            background-color: #FF7F60; /* New background color when the button is clicked or focused */
+            outline: none;/* Remove the outline when the button is clicked or focused */
+            border: none;
+            box-shadow: none;
+        }
+
+
+
+
+
+
+      </style>
+
+
   </head>
  <body>
 
-    <div class="container mt-5">
-      <h2>Enter Your Data</h2>
+     <div class="container mt-5 custom-container">
+       <div class="container mt-5 center_box">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="logo" class="logo">
+        <h1>Cardio Pro</h1>
+
+        </div>
+
+      <h4>Enter Details</h4>
       <form id="inputForm" action="/predict" method="post">
 
         <div class="form-group">
           <label for="gender">Gender:</label>
           <select class="form-control" id="gender" name="gender" required>
+            <option value="" selected disabled>Select</option>
             <option value="1">Male</option>
             <option value="0">Female</option>
           </select>
@@ -31,6 +151,7 @@
         <div class="form-group">
           <label for="smoker">Do you smoke?</label>
           <select class="form-control" id="smoker" name="smoker" required>
+            <option value="" selected disabled >Select</option>
             <option value="1">Yes</option>
             <option value="0">No</option>
           </select>
@@ -38,7 +159,7 @@
 
         <div class="form-group" id="cigsPerDayGroup" style="display: none;">
           <label for="cigsPerDay">Number of cigarettes per day:</label>
-          <input type="text" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
+          <input type="number" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
         </div>
         <div class="form-group">
             <label>Do you take Blood Pressure Medication?</label><br>
@@ -109,18 +230,32 @@
             <input type="number" step="0.01" class="form-control" id="glucose" name="glucose" placeholder="Enter glucose level" required>
         </div>
 
+        <div class="form-group center_box">
+            <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+            <input type="reset" class="btn btn-secondary btn-clear" id="clearButton" value="Clear">
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+            <h3>Result:</h3>
+            <h5><p id="majority_prediction"></p></h5>
+            <div>
+
+           <button class="btn btn-primary btn1" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Advanced
+          </button>
+           </div>
+           <div class="collapse" id="collapseExample">
+               <div class="card card-body">
+                  <h4>Individual Model Predictions:</h4>
+                  <p>Logistic Regression Prediction: <span id="prediction_lr"></span></p>
+                  <p>SVM Prediction: <span id="prediction_svm"></span></p>
+                  <p>Decision Tree Prediction: <span id="prediction_dt"></span></p>
+                  <p>Random Forest Prediction: <span id="prediction_rfc"></span></p>
+               </div>
+           </div>
+
+      </div>
+        </div>
       </form>
-
-      <h2>Result:</h2>
-      <p id="result"></p>
-
-
-                    <div class="col-12" style="text-align: center">
-                        <h4><span id="prediction"></span></h4>
-
-                    </div>
 
     </div>
 
@@ -129,7 +264,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!-- JavaScript code to handle form submission and display result -->
-    <script>
+
+     <script>
+
+
+
         function form_handler(event) {
             event.preventDefault(); // Don't submit the form like normal way
 
@@ -157,21 +296,58 @@
             }
         };
 
+        // Select the clear button by its id
+            const clearButton = document.getElementById('clearButton');
+
+            // Add a click event listener to the clear button
+            clearButton.addEventListener('click', function() {
+                // Clear the content of the specified elements
+                document.getElementById('majority_prediction').textContent = '';
+                document.getElementById('prediction_lr').textContent = '';
+                document.getElementById('prediction_svm').textContent = '';
+                document.getElementById('prediction_dt').textContent = '';
+                document.getElementById('prediction_rfc').textContent = '';
+            });
+
         function send_data() {
             var fd = new FormData(document.querySelector('form'));
             var xhr = new XMLHttpRequest();
 
             xhr.open('POST', '/predict', true);
-            document.getElementById('prediction').innerHTML = "Wait!! Predicting.......";
+            document.getElementById('prediction_lr').innerHTML = "Wait!! Predicting.......";
+            document.getElementById('prediction_svm').innerHTML = ""; // Clear previous predictions if any
+            document.getElementById('prediction_dt').innerHTML = "";
+            document.getElementById('prediction_rfc').innerHTML = "";
+            document.getElementById('majority_prediction').innerHTML = "";
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == XMLHttpRequest.DONE) {
-                    document.getElementById('prediction').innerHTML = "Prediction: " + xhr.responseText;
+                    console.log(xhr.responseText);
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById('prediction_lr').innerHTML = response.prediction_lr;
+                    document.getElementById('prediction_svm').innerHTML = response.prediction_svm;
+                    document.getElementById('prediction_dt').innerHTML = response.prediction_dt;
+                    document.getElementById('prediction_rfc').innerHTML = response.prediction_rfc;
+
+                    if (response.majority_prediction ==1) {
+                        document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you have a chance to get a heart attack.";
+                    }
+                    else{
+                        document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you are not likely to get a heart attack.";
+                    }
+
                 }
             };
 
             xhr.send(fd);
         }
+
+
+
+
+
+
+
     </script>
 
 </body>
