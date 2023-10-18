@@ -8,6 +8,9 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 
 model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
+model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
+model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
+model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
 
 @app.route("/")
 def index():
