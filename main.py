@@ -9,6 +9,9 @@ app = Flask(__name__)
 
 model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
 
+svm=pickle.load(open('SVM.pkl', 'rb'))
+rtc=pickle.load(open('RandomForest.pkl', 'rb'))
+
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -47,6 +50,7 @@ def predict():
                  sysBP, diaBP, BMI, heartRate, glucose]
         print(cigsPerDay)
         print(bloodPressureMedication)
+        print(male)
 
         # Make prediction using the loaded machine learning model
         prediction = model_lr.predict([features])
