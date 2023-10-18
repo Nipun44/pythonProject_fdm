@@ -38,7 +38,7 @@
 
         <div class="form-group" id="cigsPerDayGroup" style="display: none;">
           <label for="cigsPerDay">Number of cigarettes per day:</label>
-          <input type="text" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
+          <input type="number" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
         </div>
         <div class="form-group">
             <label>Do you take Blood Pressure Medication?</label><br>
@@ -113,28 +113,25 @@
         <button type="submit" class="btn btn-primary">Submit</button>
 
             <h2>Result:</h2>
-                <p id="majority_prediction"></p>
+            <h3><p id="majority_prediction"></p></h3>
             <div>
-          <h2>Individual Model Predictions:</h2>
-          <p>Logistic Regression Prediction: <span id="prediction_lr"></span></p>
-          <p>SVM Prediction: <span id="prediction_svm"></span></p>
-          <p>Decision Tree Prediction: <span id="prediction_dt"></span></p>
-          <p>Random Forest Prediction: <span id="prediction_rfc"></span></p>
 
-
-
+           <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Advanced
+          </button>
+           <div class="collapse" id="collapseExample">
+               <div class="card card-body">
+                  <h2>Individual Model Predictions:</h2>
+                  <p>Logistic Regression Prediction: <span id="prediction_lr"></span></p>
+                  <p>SVM Prediction: <span id="prediction_svm"></span></p>
+                  <p>Decision Tree Prediction: <span id="prediction_dt"></span></p>
+                  <p>Random Forest Prediction: <span id="prediction_rfc"></span></p>
+               </div>
+           </div>
 
       </div>
-        </div>div>
+        </div>
       </form>
-
-
-
-
-
-
-
-
 
     </div>
 
@@ -194,7 +191,14 @@
                     document.getElementById('prediction_svm').innerHTML = response.prediction_svm;
                     document.getElementById('prediction_dt').innerHTML = response.prediction_dt;
                     document.getElementById('prediction_rfc').innerHTML = response.prediction_rfc;
-                    document.getElementById('majority_prediction').innerHTML = response.majority_prediction;
+
+                    if (response.majority_prediction ==1) {
+                        document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you have a chance to get a heart attack.";
+                    }
+                    else{
+                        document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you are not likely to get a heart attack.";
+                    }
+
                 }
             };
 
