@@ -11,6 +11,7 @@ app = Flask(__name__)
 model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
 
 dt = joblib.load('tree.pkl')
+rfc = joblib.load('forest.pkl')
 
 svm=pickle.load(open('SVM.pkl', 'rb'))
 
@@ -64,12 +65,19 @@ def predict():
         prediction_svm = svm.predict([features])
         prediction_dt = dt.predict([features])
 
+        prediction_rfc = rfc.predict([features])
+
         # Return the prediction as a response
         # Modify prediction message based on the result
-        if prediction_lr[0] == 1:
-            prediction_message = f"In the next 10 years, you have a chance to get a heart attack. {prediction_lr} and {prediction_svm} and {prediction_dt}"
+
+        predictions = [prediction_lr[0], prediction_svm[0], prediction_dt[0], prediction_rfc[0]]
+        majority_prediction = max(set(predictions), key=predictions.count)
+
+        # Generate prediction message based on the result
+        if majority_prediction == 1:
+            prediction_message = f"In the next 10 years, you have a chance to get a heart attack."
         else:
-            prediction_message = f"In the next 10 years, you are not likely to get a heart attack. {prediction_lr}and {prediction_svm} and {prediction_dt}"
+            prediction_message = f"In the next 10 years, you are not likely to get a heart attack."
 
         # Return the modified prediction message as a response
         return prediction_message
