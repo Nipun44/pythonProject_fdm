@@ -1,6 +1,7 @@
 # from asgiref import simple_server
 import pickle
 
+import joblib
 import numpy as np
 from flask import Flask, request, render_template, Response, request
 from flask_cors import CORS, cross_origin
@@ -9,8 +10,13 @@ app = Flask(__name__)
 
 model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
 
+dt = joblib.load('tree.pkl')
+
 svm=pickle.load(open('SVM.pkl', 'rb'))
-rtc=pickle.load(open('RandomForest.pkl', 'rb'))
+
+
+
+
 
 @app.route("/")
 def index():
@@ -48,19 +54,22 @@ def predict():
         features = [male, age, currentSmoker, cigsPerDay, bloodPressureMedication,
                  prevalentStroke, prevalentHyp, diabetes, cholesterol,
                  sysBP, diaBP, BMI, heartRate, glucose]
-        print(cigsPerDay)
-        print(bloodPressureMedication)
-        print(male)
+        # print(cigsPerDay)
+        # print(bloodPressureMedication)
+        # print(male)
+
 
         # Make prediction using the loaded machine learning model
-        prediction = model_lr.predict([features])
+        prediction_lr = model_lr.predict([features])
+        prediction_svm = svm.predict([features])
+        prediction_dt = dt.predict([features])
 
         # Return the prediction as a response
         # Modify prediction message based on the result
-        if prediction[0] == 1:
-            prediction_message = "In the next 10 years, you have a chance to get a heart attack."
+        if prediction_lr[0] == 1:
+            prediction_message = f"In the next 10 years, you have a chance to get a heart attack. {prediction_lr} and {prediction_svm} and {prediction_dt}"
         else:
-            prediction_message = "In the next 10 years, you are not likely to get a heart attack."
+            prediction_message = f"In the next 10 years, you are not likely to get a heart attack. {prediction_lr}and {prediction_svm} and {prediction_dt}"
 
         # Return the modified prediction message as a response
         return prediction_message
