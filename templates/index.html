@@ -329,11 +329,15 @@
                     document.getElementById('prediction_dt').innerHTML = response.prediction_dt;
                     document.getElementById('prediction_rfc').innerHTML = response.prediction_rfc;
 
+                    const majorityPredictionElement = document.getElementById('majority_prediction');
+
                     if (response.majority_prediction ==1) {
                         document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you have a chance to get a heart attack.";
+                        majorityPredictionElement.style.color = 'red';
                     }
                     else{
                         document.getElementById('majority_prediction').innerHTML = "In the next 10 years, you are not likely to get a heart attack.";
+                        majorityPredictionElement.style.color = 'green';
                     }
 
                 }
