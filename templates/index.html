@@ -118,8 +118,15 @@
             box-shadow: none;
         }
         body {
-          background-color: #ffdab9; /* Replace #f8f9fa with the color code of your choice */
+          background-color: #ffdab9;
         }
+        .form-check-input:checked {
+          background-color: #FF0072;
+          border-color: #FF0072;
+        }
+
+
+
 
 
 
@@ -152,7 +159,7 @@
         </div>
         <div class="form-group">
           <label for="age">Age:</label>
-          <input type="number" class="form-control" id="age" name="age" placeholder="Enter age" required>
+          <input type="number" class="form-control" id="age" name="age" placeholder="Enter age" required min="1">
         </div>
 
         <div class="form-group">
@@ -166,7 +173,7 @@
 
         <div class="form-group" id="cigsPerDayGroup" style="display: none;">
           <label for="cigsPerDay">Number of cigarettes per day:</label>
-          <input type="number" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day">
+          <input type="number" class="form-control" id="cigsPerDay" name="cigsPerDay" placeholder="Enter number of cigarettes per day" min="0">
         </div>
         <div class="form-group">
             <label>Do you take Blood Pressure Medication?</label><br>
@@ -194,7 +201,7 @@
         <div class="form-group">
             <label>Do you have Prevalent Hypertension?</label><br>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="prevalentHyp" id="hypertensionYes" value="1" required>
+                <input class="form-check-input" type="radio" name="prevalentHyp" id="hypertensionYes" value="1" required >
                 <label class="form-check-label" for="hypertensionYes">Yes</label>
             </div>
             <div class="form-check form-check-inline">
@@ -214,27 +221,27 @@
         </div>
         <div class="form-group">
             <label for="cholesterol">Cholesterol Level:</label>
-            <input type="number" step="0.01" class="form-control" id="cholesterol" name="cholesterol" placeholder="Enter cholesterol level" required>
+            <input type="number" step="0.01" class="form-control" id="cholesterol" name="cholesterol" placeholder="Enter cholesterol level" required min="0">
         </div>
         <div class="form-group">
             <label for="sysBP">Systolic Blood Pressure:</label>
-            <input type="number" step="0.01" class="form-control" id="sysBP" name="sysBP" placeholder="Enter systolic blood pressure" required>
+            <input type="number" step="0.01" class="form-control" id="sysBP" name="sysBP" placeholder="Enter systolic blood pressure" required min="0">
         </div>
         <div class="form-group">
             <label for="diaBP">Diastolic Blood Pressure:</label>
-            <input type="number" step="0.01" class="form-control" id="diaBP" name="diaBP" placeholder="Enter diastolic blood pressure" required>
+            <input type="number" step="0.01" class="form-control" id="diaBP" name="diaBP" placeholder="Enter diastolic blood pressure" required min="0">
         </div>
         <div class="form-group">
             <label for="BMI">BMI:</label>
-            <input type="number" step="0.01" class="form-control" id="BMI" name="BMI" placeholder="Enter BMI" required>
+            <input type="number" step="0.01" class="form-control" id="BMI" name="BMI" placeholder="Enter BMI" required min="0">
         </div>
         <div class="form-group">
             <label for="heartRate">Heart Rate:</label>
-            <input type="number" step="0.01" class="form-control" id="heartRate" name="heartRate" placeholder="Enter heart rate" required>
+            <input type="number" step="0.01" class="form-control" id="heartRate" name="heartRate" placeholder="Enter heart rate" required min="0">
         </div>
         <div class="form-group">
             <label for="glucose">Glucose Level:</label>
-            <input type="number" step="0.01" class="form-control" id="glucose" name="glucose" placeholder="Enter glucose level" required>
+            <input type="number" step="0.01" class="form-control" id="glucose" name="glucose" placeholder="Enter glucose level" required min="0">
         </div>
 
         <div class="form-group center_box">

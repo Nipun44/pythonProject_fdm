@@ -8,12 +8,12 @@ from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
 
-model_lr=pickle.load(open('logisticRegression.pkl', 'rb'))
+model_lr=pickle.load(open('logisticRegression_best.pkl', 'rb'))
 
-dt = joblib.load('tree.pkl')
-rfc = joblib.load('forest.pkl')
+dt = joblib.load('tree_best.pkl')
+rfc = joblib.load('forest_best.pkl')
 
-svm=pickle.load(open('SVM.pkl', 'rb'))
+svm=pickle.load(open('SVM_best.pkl', 'rb'))
 
 
 
