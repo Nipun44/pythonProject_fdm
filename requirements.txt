@@ -37,10 +37,6 @@ MarkupSafe==2.1.2
 
 
 
-
-tornado==6.3.2
-traitlets==5.9.0
-
 Werkzeug==3.0.0
 
 
