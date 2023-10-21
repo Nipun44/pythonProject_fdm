@@ -3,7 +3,7 @@ import pickle
 from statistics import mode
 
 import joblib
-import numpy as np
+
 from flask import Flask, render_template, request, Response, jsonify
 
 app = Flask(__name__)
