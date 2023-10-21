@@ -4,7 +4,7 @@ from statistics import mode
 
 import joblib
 
-from flask import Flask, render_template, request, Response, jsonify
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
