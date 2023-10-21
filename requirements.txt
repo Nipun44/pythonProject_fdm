@@ -1,4 +1,4 @@
-python_version ==3.11.3
+
 absl-py==2.0.0
 anyio==3.6.2
 argon2-cffi==21.3.0
