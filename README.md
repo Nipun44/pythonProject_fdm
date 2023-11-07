@@ -1,7 +1,7 @@
 # Heart Disease Prediction Web App with Flask 🫀🚀
 
 ## Welcome to Our Heart Disease Prediction Web App! 
-Harnessing the Power of Machine Learning and Flask, we have Created an Interactive Platform for Predicting Heart Disease, Ensuring Early Diagnosis and Proactive Healthcare. Are You Ready to Revolutionize Healthcare? Let's Dive In! 🏥
+Harnessing the Power of Machine Learning, we have Created an Interactive Platform for Predicting Heart Disease, Ensuring Early Diagnosis and Proactive Healthcare. Are You Ready to Revolutionize Healthcare? Let's Dive In! 🏥
 
 ## Explore, Predict, Prevent: Your Journey Starts Here! 🌟
 
