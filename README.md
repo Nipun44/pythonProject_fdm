@@ -49,4 +49,4 @@ Harnessing the Power of Machine Learning and Flask, we have Created an Interacti
 **Predict Variable (Desired Target):**
 - **10-year Risk of Coronary Heart Disease CHD:** Binary: “1” means “Yes”, “0” means “No” 🎯
 
-**Make this GitHub README more creative**
+
